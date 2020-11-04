@@ -1,0 +1,2 @@
+(this["webpackJsonpspotify-kahoot"]=this["webpackJsonpspotify-kahoot"]||[]).push([[0],{10:function(t,o,n){},11:function(t,o,n){"use strict";n.r(o);var e=n(1),s=(n(0),n(3)),c=n.n(s),i=(n(9),n(10),function(){return Object(e.jsx)("div",{className:"App",children:"spotify-kahoot"})});c.a.render(Object(e.jsx)(i,{}),document.getElementById("root"))},9:function(t,o,n){}},[[11,1,2]]]);
+//# sourceMappingURL=main.12bef5a2.chunk.js.map
