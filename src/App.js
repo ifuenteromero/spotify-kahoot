@@ -1,12 +1,8 @@
 import React from 'react';
 import './App.css';
 
-const App = () =>  {
-  return (
-    <div className="App">
-      spotify-kahoot
-    </div>
-  );
-}
+const App = () => {
+  return <button className='App'>spotify-kahoot</button>;
+};
 
 export default App;
