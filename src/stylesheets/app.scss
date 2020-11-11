@@ -1,0 +1,7 @@
+.App {
+  text-align: center;
+  background-color: red;
+  @media (min-width: 600px) {
+    background-color: green;
+  }
+}
