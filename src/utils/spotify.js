@@ -2,7 +2,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize';
 export const spotifyLogoUrl =
   'https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg';
 
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = process.env.REACT_APP_REDIRECT_URL;
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
