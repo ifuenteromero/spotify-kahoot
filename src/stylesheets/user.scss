@@ -1,0 +1,29 @@
+.user {
+  display: flex;
+  color: white;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: rgba($color: #111111, $alpha: 0.7);
+  width: 10rem;
+  border-radius: 32px;
+  padding: 0.2rem;
+  &:hover {
+    background-color: #282828;
+    cursor: pointer;
+  }
+}
+
+.user__avatar {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.user__name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 2rem;
+  max-width: 110px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
