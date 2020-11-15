@@ -3,29 +3,26 @@ import '../stylesheets/app.scss';
 import Login from './Login';
 import { getTokenFromResponse } from '../utils/spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
-const spotify = new SpotifyWebApi();
+import Game from './Game';
+import { http } from '../services/httpService';
 
 const App = () => {
   const [token, setToken] = useState(null);
 
-  const getUser = async () => {
+  const getToken = async () => {
     const { access_token: _token } = getTokenFromResponse();
     window.location.hash = '';
-
     if (_token) {
       setToken(_token);
-      spotify.setAccessToken(_token);
-      const user = await spotify.getMe();
-      console.log({ user });
+      http.ChangeToken(_token);
     }
   };
 
   useEffect(() => {
-    getUser();
+    getToken();
   }, []);
-  return (
-    <div className='app'>{token ? <div> estoy logado </div> : <Login />}</div>
-  );
+
+  return <div className='app'>{token ? <Game /> : <Login />}</div>;
 };
 
 export default App;
