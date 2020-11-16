@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { http } from '../services/httpService';
 import '../stylesheets/player.scss';
 
 const Player = () => {
+  const playerRef = useRef();
   useEffect(() => {
     getPlayLists();
   }, []);
@@ -18,8 +19,10 @@ const Player = () => {
   const getRandomTrack = () => {
     const totalTracks = tracks.length;
     const randomNumber = getRandomArbitrary(0, totalTracks - 1);
-    console.log({ randomNumber });
     setRandomTrack(tracks[randomNumber]);
+    setTimeout(() => {
+      playerRef.current.pause();
+    }, 5000);
   };
   const [randomTrack, setRandomTrack] = useState({
     id: null,
@@ -47,7 +50,7 @@ const Player = () => {
   return (
     <>
       {randomTrack?.preview_url && (
-        <audio controls autoPlay currentTime={5}>
+        <audio controls autoPlay ref={playerRef}>
           <source src={randomTrack?.preview_url} type='audio/mpeg' />
         </audio>
       )}
