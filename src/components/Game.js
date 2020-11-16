@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { http } from '../services/httpService';
 import Header from './Header';
 import Player from './Player';
+import { HashRouter, Route } from 'react-router-dom';
+import Landing from './Landing';
 
 const Game = () => {
   const [user, setUser] = useState(null);
@@ -19,7 +21,10 @@ const Game = () => {
   return (
     <>
       <Header user={user} />
-      <Player />
+      <HashRouter>
+        <Route path='/play' component={Player} />
+        <Route exact path='/' component={Landing} />
+      </HashRouter>
     </>
   );
 };
