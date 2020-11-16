@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { http } from '../services/httpService';
 import Header from './Header';
+import Player from './Player';
 
 const Game = () => {
   const [user, setUser] = useState(null);
@@ -18,7 +19,7 @@ const Game = () => {
   return (
     <>
       <Header user={user} />
-      <div>Game</div>
+      <Player />
     </>
   );
 };
