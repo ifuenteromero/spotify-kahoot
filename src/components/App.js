@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import '../stylesheets/app.scss';
 import Login from './Login';
 import { getTokenFromResponse } from '../utils/spotify';
-import SpotifyWebApi from 'spotify-web-api-js';
 import Game from './Game';
 import { http } from '../services/httpService';
 

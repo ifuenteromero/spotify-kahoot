@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { http } from '../services/httpService';
 import '../stylesheets/player.scss';
 
 const Player = () => {
+  useEffect(() => {
+    getPlayLists();
+  }, []);
+
+  const getPlayLists = async () => {
+    const { data: playLists } = await http.get('/me/playlists');
+    console.log({ playLists });
+  };
   return (
     <>
       <audio controls autoPlay className='player'>

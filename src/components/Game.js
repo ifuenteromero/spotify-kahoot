@@ -11,8 +11,6 @@ const Game = () => {
     const { data: _user } = await http.get('/me');
     setUser(_user);
     console.log({ _user });
-    const response = await http.get('/me/playlists');
-    console.log({ response });
   };
   useEffect(() => {
     getUser();
