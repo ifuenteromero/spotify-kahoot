@@ -1,16 +1,31 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useRef } from 'react';
 import { http } from '../services/httpService';
 import endPoints, { tracksFromPlayList } from '../utils/spotifyUrls';
+import { getRandomNumber, getRandomNumbers } from '../utils/useFulFunctions';
 
 export const QuestionContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const ProviderQuestion = ({ children }) => {
   const { userPlayLists } = endPoints;
+  const playerRef = useRef();
+  const numberAnswers = 4;
+  const [tracks, setTracks] = useState([]);
   const [answers, setAnswers] = useState([]);
+
+  const [randomTrack, setRandomTrack] = useState({
+    id: null,
+    preview_url: null
+  });
+
   useEffect(() => {
     getTracks();
   }, []);
+
+  useEffect(() => {
+    getRandomAnswers();
+    pauseTrack();
+  }, [tracks]);
 
   const getTracks = async () => {
     const {
@@ -33,10 +48,24 @@ export const ProviderQuestion = ({ children }) => {
     );
     setTracks(_tracks);
   };
-  const [tracks, setTracks] = useState([]);
+
+  const getRandomAnswers = () => {
+    const randomNumbers = getRandomNumbers(numberAnswers, tracks.length);
+    const _answers = randomNumbers.map(number => tracks[number]);
+    const randomNumber = getRandomNumber(0, 4);
+    setRandomTrack(tracks[randomNumbers[randomNumber]]);
+    setAnswers(_answers);
+  };
+
+  const pauseTrack = () => {
+    const trackDuration = 5000;
+    setTimeout(() => {
+      playerRef.current.pause();
+    }, trackDuration);
+  };
 
   return (
-    <QuestionContext.Provider value={{ tracks }}>
+    <QuestionContext.Provider value={{ tracks, randomTrack, playerRef }}>
       {children}
     </QuestionContext.Provider>
   );
