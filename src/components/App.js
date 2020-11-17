@@ -4,8 +4,10 @@ import Login from './Login';
 import { getTokenFromResponse } from '../utils/spotify';
 import Game from './Game';
 import { http } from '../services/httpService';
+import variables from '../stylesheets/user.scss';
 
 const App = () => {
+  console.log({ variables });
   const [token, setToken] = useState(null);
 
   const getToken = async () => {

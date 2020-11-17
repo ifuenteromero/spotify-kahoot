@@ -8,7 +8,7 @@ const Header = ({ user }) => {
     <div className='user'>
       <Avatar
         alt={user?.display_name}
-        src={user?.images[0].url}
+        src={user?.images[0]?.url}
         className='user__avatar'
       />
       <span className='user__name'>{user?.display_name}</span>

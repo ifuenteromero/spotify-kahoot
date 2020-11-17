@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { http } from '../services/httpService';
 import Header from './Header';
-import Player from './Player';
 import { HashRouter, Route } from 'react-router-dom';
 import Landing from './Landing';
+import Question from './Question';
 
 const Game = () => {
   const [user, setUser] = useState(null);
@@ -20,7 +20,7 @@ const Game = () => {
     <>
       <Header user={user} />
       <HashRouter>
-        <Route path='/play' component={Player} />
+        <Route path='/play' component={Question} />
         <Route exact path='/' component={Landing} />
       </HashRouter>
     </>

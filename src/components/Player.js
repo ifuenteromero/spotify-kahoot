@@ -50,7 +50,7 @@ const Player = () => {
   return (
     <>
       {randomTrack?.preview_url && (
-        <audio controls autoPlay ref={playerRef}>
+        <audio controls ref={playerRef} className='player'>
           <source src={randomTrack?.preview_url} type='audio/mpeg' />
         </audio>
       )}

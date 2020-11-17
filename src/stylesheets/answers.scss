@@ -1,0 +1,35 @@
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  height: 100%;
+  border: 1px solid red;
+}
+
+.answer {
+  width: 40%;
+  height: 300px;
+  cursor: pointer;
+  &--1 {
+    @extend .answer;
+    background-color: #509bf5;
+    border-radius: 60px 0 0 0;
+  }
+  &--2 {
+    @extend .answer;
+    background-color: #af2796;
+    border-radius: 0 60px 0 0;
+  }
+  &--3 {
+    @extend .answer;
+    background-color: yellow;
+    border-radius: 0 0 0 60px;
+  }
+
+  &--4 {
+    @extend .answer;
+    background-color: #19e68c;
+    border-radius: 0 0 60px 0;
+  }
+}
