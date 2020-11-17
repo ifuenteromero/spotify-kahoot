@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Answer from './Answer';
 import '../stylesheets/answers.scss';
+import { QuestionContext } from '../contexts/QuestionContext';
 
 const Answers = () => {
+  const { test } = useContext(QuestionContext);
   return (
     <div className='answers'>
       <Answer order={1} />
