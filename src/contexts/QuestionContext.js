@@ -57,7 +57,7 @@ export const ProviderQuestion = ({ children }) => {
     setRandomTrack(tracks[randomNumbers[randomNumber]]);
     setAnswers(_answers);
   };
-
+  const [isCorrect, setIsCorrect] = useState(isValidated);
   const handleValidate = e => {
     setIsValidated(true);
   };
@@ -76,7 +76,9 @@ export const ProviderQuestion = ({ children }) => {
         playerRef,
         answers,
         isValidated,
-        handleValidate
+        handleValidate,
+        setIsCorrect,
+        isCorrect
       }}
     >
       {children}

@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import { QuestionContext } from '../contexts/QuestionContext';
 
 const Answer = ({ order, answer }) => {
-  const { randomTrack, handleValidate, isValidated } = useContext(
+  const { randomTrack, handleValidate, isValidated, setIsCorrect } = useContext(
     QuestionContext
   );
   const name = answer?.name;
   const artist = answer?.artists.map(artist => artist.name).join(' & ');
   const id = answer?.id;
   const correctId = randomTrack?.id;
-  //   console.log({ correctId });
-  //   console.log({ randomTrack });
 
-  const [isCorrect, setIsCorrect] = useState(isValidated);
   const handleCorrect = e => {
     handleValidate();
-    // setIsCorrect(correctId === id);
+    setIsCorrect(correctId === id);
   };
 
   const correct = () => {
