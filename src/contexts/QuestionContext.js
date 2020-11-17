@@ -65,7 +65,9 @@ export const ProviderQuestion = ({ children }) => {
   };
 
   return (
-    <QuestionContext.Provider value={{ tracks, randomTrack, playerRef }}>
+    <QuestionContext.Provider
+      value={{ tracks, randomTrack, playerRef, answers }}
+    >
       {children}
     </QuestionContext.Provider>
   );

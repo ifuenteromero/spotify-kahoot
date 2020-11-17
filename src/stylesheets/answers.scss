@@ -11,6 +11,11 @@
   width: 40%;
   height: 300px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   &--1 {
     @extend .answer;
     background-color: #509bf5;
@@ -32,4 +37,9 @@
     background-color: #19e68c;
     border-radius: 0 0 60px 0;
   }
+}
+
+.answer__text {
+  background-color: black;
+  padding: 5px 10px;
 }

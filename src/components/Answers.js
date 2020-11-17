@@ -4,13 +4,13 @@ import '../stylesheets/answers.scss';
 import { QuestionContext } from '../contexts/QuestionContext';
 
 const Answers = () => {
-  const { test } = useContext(QuestionContext);
+  const { answers } = useContext(QuestionContext);
+  console.log({ answers });
   return (
     <div className='answers'>
-      <Answer order={1} />
-      <Answer order={2} />
-      <Answer order={3} />
-      <Answer order={4} />
+      {answers.map((answer, key) => (
+        <Answer key={key} order={key + 1} answer={answer} />
+      ))}
     </div>
   );
 };
