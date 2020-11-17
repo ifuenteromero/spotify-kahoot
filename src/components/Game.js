@@ -10,7 +10,6 @@ const Game = () => {
   const getUser = async () => {
     const { data: _user } = await http.get('/me');
     setUser(_user);
-    console.log({ _user });
   };
   useEffect(() => {
     getUser();

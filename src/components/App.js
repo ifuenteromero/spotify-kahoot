@@ -7,7 +7,6 @@ import { http } from '../services/httpService';
 import variables from '../stylesheets/user.scss';
 
 const App = () => {
-  console.log({ variables });
   const [token, setToken] = useState(null);
 
   const getToken = async () => {

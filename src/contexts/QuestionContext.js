@@ -12,6 +12,7 @@ export const ProviderQuestion = ({ children }) => {
   const numberAnswers = 4;
   const [tracks, setTracks] = useState([]);
   const [answers, setAnswers] = useState([]);
+  const [isValidated, setIsValidated] = useState(false);
 
   const [randomTrack, setRandomTrack] = useState({
     id: null,
@@ -57,6 +58,9 @@ export const ProviderQuestion = ({ children }) => {
     setAnswers(_answers);
   };
 
+  const handleValidate = e => {
+    setIsValidated(true);
+  };
   const pauseTrack = () => {
     const trackDuration = 5000;
     setTimeout(() => {
@@ -66,7 +70,14 @@ export const ProviderQuestion = ({ children }) => {
 
   return (
     <QuestionContext.Provider
-      value={{ tracks, randomTrack, playerRef, answers }}
+      value={{
+        tracks,
+        randomTrack,
+        playerRef,
+        answers,
+        isValidated,
+        handleValidate
+      }}
     >
       {children}
     </QuestionContext.Provider>
