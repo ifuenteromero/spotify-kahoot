@@ -13,6 +13,7 @@ export const ProviderQuestion = ({ children }) => {
   const [tracks, setTracks] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [isValidated, setIsValidated] = useState(false);
+  const [question, setQuestion] = useState(1);
 
   const [randomTrack, setRandomTrack] = useState({
     id: null,
@@ -27,6 +28,11 @@ export const ProviderQuestion = ({ children }) => {
     getRandomAnswers();
     pauseTrack();
   }, [tracks]);
+
+  useEffect(() => {
+    getRandomAnswers();
+    pauseTrack();
+  }, [question]);
 
   const getTracks = async () => {
     const {
@@ -67,6 +73,12 @@ export const ProviderQuestion = ({ children }) => {
       playerRef.current.pause();
     }, trackDuration);
   };
+  const handleNextQuestion = () => {
+    setQuestion(question + 1);
+    setTimeout(() => {
+      playerRef.current.play();
+    }, 500);
+  };
 
   return (
     <QuestionContext.Provider
@@ -78,7 +90,8 @@ export const ProviderQuestion = ({ children }) => {
         isValidated,
         handleValidate,
         setIsCorrect,
-        isCorrect
+        isCorrect,
+        handleNextQuestion
       }}
     >
       {children}

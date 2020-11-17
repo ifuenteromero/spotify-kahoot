@@ -4,6 +4,7 @@ import { QuestionContext } from '../contexts/QuestionContext';
 
 const Player = () => {
   const { randomTrack, playerRef } = useContext(QuestionContext);
+  console.log({ randomTrack: randomTrack?.name });
 
   return (
     <>

@@ -3,6 +3,7 @@ import Answers from './Answers';
 import Player from './Player';
 import { ProviderQuestion } from '../contexts/QuestionContext';
 import CorrectAnswer from './CorrectAnswer';
+import ButtonNextQuestion from './ButtonNextQuestion';
 
 const Question = () => {
   return (
@@ -11,6 +12,7 @@ const Question = () => {
         <Player />
         <Answers />
         <CorrectAnswer />
+        <ButtonNextQuestion />
       </div>
     </ProviderQuestion>
   );
