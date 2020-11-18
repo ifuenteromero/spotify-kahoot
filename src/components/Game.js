@@ -5,6 +5,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import Landing from './Landing';
 import Question from './Question';
 import Listening from './Listening';
+import { ProviderQuestion } from '../contexts/QuestionContext';
 
 const Game = () => {
   const [user, setUser] = useState(null);
@@ -23,9 +24,11 @@ const Game = () => {
       </header>
       <main className='main'>
         <HashRouter>
-          <Route path='/listening' component={Listening} />
-          <Route path='/play' component={Question} />
-          <Route exact path='/' component={Landing} />
+          <ProviderQuestion>
+            <Route path='/listening' component={Listening} />
+            <Route path='/play' component={Question} />
+            <Route exact path='/' component={Landing} />
+          </ProviderQuestion>
         </HashRouter>
       </main>
     </>

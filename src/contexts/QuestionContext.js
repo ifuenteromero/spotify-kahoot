@@ -70,6 +70,7 @@ export const ProviderQuestion = props => {
   const pauseTrack = () => {
     setTimeout(() => {
       playerRef.current.pause();
+      history.push('/play');
     }, trackDuration);
   };
   const handleNextQuestion = () => {
