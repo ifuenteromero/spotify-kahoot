@@ -14,6 +14,7 @@ export const ProviderQuestion = props => {
   const { userPlayLists } = endPoints;
   const playerRef = useRef();
   const numberAnswers = 4;
+  const trackDuration = 5000;
   const [tracks, setTracks] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [isValidated, setIsValidated] = useState(false);
@@ -67,10 +68,8 @@ export const ProviderQuestion = props => {
     setIsValidated(true);
   };
   const pauseTrack = () => {
-    const trackDuration = 5000;
     setTimeout(() => {
       playerRef.current.pause();
-      window.location = '/#/play';
     }, trackDuration);
   };
   const handleNextQuestion = () => {
@@ -95,7 +94,8 @@ export const ProviderQuestion = props => {
         isCorrect,
         handleNextQuestion,
         getQuestion,
-        resetQuestions
+        resetQuestions,
+        trackDuration
       }}
     >
       {children}
