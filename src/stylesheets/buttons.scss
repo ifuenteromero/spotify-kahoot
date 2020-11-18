@@ -1,0 +1,16 @@
+.button-primary {
+  background-color: #1db954;
+  color: white;
+  text-transform: uppercase;
+  padding: 20px 100px;
+  border-radius: 500px;
+  height: 50px;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-weight: 700;
+  font-family: Helvetica, Arial, sans-serif;
+  &:hover {
+    background-color: rgb(30, 215, 96);
+    transform: scale(1.04);
+  }
+}

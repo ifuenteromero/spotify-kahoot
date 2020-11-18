@@ -3,7 +3,7 @@ import { Avatar } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import '../stylesheets/user.scss';
 
-const Header = ({ user }) => {
+const UserProfile = ({ user }) => {
   return (
     <div className='user'>
       <Avatar
@@ -16,8 +16,8 @@ const Header = ({ user }) => {
   );
 };
 
-Header.propTypes = {
+UserProfile.propTypes = {
   user: PropTypes.object
 };
 
-export default Header;
+export default UserProfile;

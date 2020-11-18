@@ -3,6 +3,7 @@
 ::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -13,9 +14,9 @@ body {
   margin: 0;
   font-family: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro,
     Meiryo, MS Gothic, sans-serif;
+  height: 100vh;
 }
 
 #root {
-  box-sizing: border-box;
-  height: 100vh;
+  height: 100%;
 }
