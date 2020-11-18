@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div className='login'>
       <img src={spotifyLogoUrl} alt='spotify-logo' />
-      <a className='button-primary' href={loginUrl}>
+      <a className='button--primary' href={loginUrl}>
         login with spotify
       </a>
     </div>

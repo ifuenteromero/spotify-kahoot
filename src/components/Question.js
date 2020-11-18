@@ -10,7 +10,7 @@ const Question = () => {
     return () => resetQuestions();
   }, []);
   return (
-    <div>
+    <div className='question'>
       <Answers />
       <CorrectAnswer />
       <ButtonNextQuestion />

@@ -24,6 +24,14 @@
   align-items: center;
 }
 
+.question {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
 a {
   text-decoration: none;
 }

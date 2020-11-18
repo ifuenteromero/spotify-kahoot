@@ -1,14 +1,12 @@
 .answers {
-  display: flex;
-  flex-wrap: wrap;
+  height: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  justify-content: center;
-  height: 100%;
-  border: 1px solid red;
 }
 
 .answer {
-  width: 40%;
+  width: 300px;
   height: 300px;
   cursor: pointer;
   display: flex;
@@ -16,6 +14,7 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  padding: 20px;
   &--1 {
     @extend .answer;
     background-color: #509bf5;
@@ -36,6 +35,9 @@
     @extend .answer;
     background-color: #19e68c;
     border-radius: 0 0 60px 0;
+  }
+  &:hover {
+    transform: scale(1.01);
   }
 }
 
