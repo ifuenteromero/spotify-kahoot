@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Answers from './Answers';
-import Player from './Player';
-import { ProviderQuestion } from '../contexts/QuestionContext';
 import CorrectAnswer from './CorrectAnswer';
 import ButtonNextQuestion from './ButtonNextQuestion';
+import { QuestionContext } from '../contexts/QuestionContext';
 
 const Question = () => {
+  const { resetQuestions } = useContext(QuestionContext);
+  useEffect(() => {
+    return () => resetQuestions();
+  }, []);
   return (
-    <ProviderQuestion>
-      <div>
-        <Player />
-        <Answers />
-        <CorrectAnswer />
-        <ButtonNextQuestion />
-      </div>
-    </ProviderQuestion>
+    <div>
+      <Answers />
+      <CorrectAnswer />
+      <ButtonNextQuestion />
+    </div>
   );
 };
 

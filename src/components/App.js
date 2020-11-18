@@ -4,7 +4,7 @@ import Login from './Login';
 import { getTokenFromResponse } from '../utils/spotify';
 import Game from './Game';
 import { http } from '../services/httpService';
-import variables from '../stylesheets/user.scss';
+import { ProviderQuestion } from '../contexts/QuestionContext';
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -22,7 +22,13 @@ const App = () => {
     getToken();
   }, []);
 
-  return <div className='app'>{token ? <Game /> : <Login />}</div>;
+  const GameWithProvider = (
+    <ProviderQuestion>
+      <Game />
+    </ProviderQuestion>
+  );
+
+  return <div className='app'>{token ? GameWithProvider : <Login />}</div>;
 };
 
 export default App;

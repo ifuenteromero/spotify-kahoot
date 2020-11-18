@@ -2,11 +2,15 @@ import React, { useState, createContext, useEffect, useRef } from 'react';
 import { http } from '../services/httpService';
 import endPoints, { tracksFromPlayList } from '../utils/spotifyUrls';
 import { getRandomNumber, getRandomNumbers } from '../utils/useFulFunctions';
+import { useHistory } from 'react-router-dom';
 
 export const QuestionContext = createContext();
 
-// eslint-disable-next-line react/prop-types
-export const ProviderQuestion = ({ children }) => {
+export const ProviderQuestion = props => {
+  const history = useHistory();
+  // eslint-disable-next-line react/prop-types
+  const { children } = props;
+  console.log({ history });
   const { userPlayLists } = endPoints;
   const playerRef = useRef();
   const numberAnswers = 4;
@@ -24,15 +28,10 @@ export const ProviderQuestion = ({ children }) => {
     getTracks();
   }, []);
 
-  useEffect(() => {
+  const getQuestion = () => {
     getRandomAnswers();
     pauseTrack();
-  }, [tracks]);
-
-  useEffect(() => {
-    getRandomAnswers();
-    pauseTrack();
-  }, [question]);
+  };
 
   const getTracks = async () => {
     const {
@@ -71,13 +70,16 @@ export const ProviderQuestion = ({ children }) => {
     const trackDuration = 5000;
     setTimeout(() => {
       playerRef.current.pause();
+      window.location = '/#/play';
     }, trackDuration);
   };
   const handleNextQuestion = () => {
     setQuestion(question + 1);
-    setTimeout(() => {
-      playerRef.current.play();
-    }, 500);
+  };
+
+  const resetQuestions = () => {
+    setIsValidated(false);
+    setIsCorrect(false);
   };
 
   return (
@@ -91,7 +93,9 @@ export const ProviderQuestion = ({ children }) => {
         handleValidate,
         setIsCorrect,
         isCorrect,
-        handleNextQuestion
+        handleNextQuestion,
+        getQuestion,
+        resetQuestions
       }}
     >
       {children}

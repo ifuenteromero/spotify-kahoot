@@ -4,6 +4,8 @@ import Header from './Header';
 import { HashRouter, Route } from 'react-router-dom';
 import Landing from './Landing';
 import Question from './Question';
+import Player from './Player';
+import Listening from './Listening';
 
 const Game = () => {
   const [user, setUser] = useState(null);
@@ -19,6 +21,7 @@ const Game = () => {
     <>
       <Header user={user} />
       <HashRouter>
+        <Route path='/listening' component={Listening} />
         <Route path='/play' component={Question} />
         <Route exact path='/' component={Landing} />
       </HashRouter>

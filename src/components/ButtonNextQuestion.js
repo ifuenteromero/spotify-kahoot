@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { QuestionContext } from '../contexts/QuestionContext';
+import { Link } from 'react-router-dom';
 
 const ButtonNextQuestion = () => {
   const { isValidated, handleNextQuestion } = useContext(QuestionContext);
   return (
     <>
       {isValidated && (
-        <button type='button' onClick={handleNextQuestion}>
+        <Link to='/listening' onClick={handleNextQuestion}>
           Next
-        </button>
+        </Link>
       )}
     </>
   );
