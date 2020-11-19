@@ -21,12 +21,11 @@ export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${re
 
 export const getTokenFromResponse = () => {
   return window.location.hash
-    .substring(1)
+    .substring(2)
     .split('&')
     .reduce((initial, item) => {
       const parts = item.split('=');
       initial[parts[0]] = decodeURIComponent(parts[1]);
-
       return initial;
     }, {});
 };

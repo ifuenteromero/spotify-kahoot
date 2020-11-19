@@ -66,6 +66,7 @@ export const ProviderQuestion = props => {
     setRandomTrack(tracks[randomNumbers[randomNumber]]);
     setAnswers(_answers);
   };
+
   const [isCorrect, setIsCorrect] = useState(isValidated);
   const handleValidate = e => {
     setIsValidated(true);
