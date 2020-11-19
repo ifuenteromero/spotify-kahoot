@@ -5,7 +5,6 @@ import { QuestionContext } from '../contexts/QuestionContext';
 
 const Answers = () => {
   const { answers } = useContext(QuestionContext);
-  console.log({ answers });
   return (
     <div className='answers'>
       {answers.map((answer, key) => (

@@ -1,18 +1,21 @@
 import React, { useState, createContext, useEffect, useRef } from 'react';
 import { http } from '../services/httpService';
 import endPoints, { tracksFromPlayList } from '../utils/spotifyUrls';
-import { getRandomNumber, getRandomNumbers } from '../utils/useFulFunctions';
+import {
+  getRandomNumber,
+  getRandomNumbers,
+  getSound
+} from '../utils/useFulFunctions';
 import { useHistory } from 'react-router-dom';
-
 export const QuestionContext = createContext();
 
 export const ProviderQuestion = props => {
   const history = useHistory();
   // eslint-disable-next-line react/prop-types
   const { children } = props;
-  console.log({ history });
   const { userPlayLists } = endPoints;
   const playerRef = useRef();
+  const soundRef = useRef();
   const numberAnswers = 4;
   const trackDuration = 5000;
   const [tracks, setTracks] = useState([]);
@@ -67,6 +70,7 @@ export const ProviderQuestion = props => {
   const handleValidate = e => {
     setIsValidated(true);
   };
+
   const pauseTrack = () => {
     setTimeout(() => {
       playerRef.current.pause();
@@ -80,6 +84,16 @@ export const ProviderQuestion = props => {
   const resetQuestions = () => {
     setIsValidated(false);
     setIsCorrect(false);
+  };
+
+  const handleCorrect = (correctId, currentId) => {
+    handleValidate();
+    const _isCorrect = correctId === currentId;
+    setIsCorrect(_isCorrect);
+    const soundName = _isCorrect ? 'correct' : 'wrong';
+    const sound = getSound(soundName);
+    soundRef.current.src = sound;
+    soundRef.current.play();
   };
 
   return (
@@ -96,7 +110,9 @@ export const ProviderQuestion = props => {
         handleNextQuestion,
         getQuestion,
         resetQuestions,
-        trackDuration
+        trackDuration,
+        soundRef,
+        handleCorrect
       }}
     >
       {children}
