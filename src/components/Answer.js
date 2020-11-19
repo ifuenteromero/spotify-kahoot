@@ -6,37 +6,30 @@ const Answer = ({ order, answer }) => {
   const { randomTrack, isValidated, handleCorrect } = useContext(
     QuestionContext
   );
+
   const name = answer?.name;
   const artist = answer?.artists.map(artist => artist.name).join(' & ');
   const id = answer?.id;
   const correctId = randomTrack?.id;
+  const _isCorrect = correctId === id;
+  const correctedClassName = _isCorrect ? 'right' : 'wrong';
+  const validatedClassName = isValidated ? correctedClassName : '';
 
-  const correct = () => {
-    if (isValidated) {
-      if (correctId === id) {
-        return 'right';
-      } else {
-        return 'wrong';
-      }
-    } else {
-      return '';
-    }
-  };
   return (
-    <div
-      className={`answer--${order} ${correct()}`}
+    <button
+      className={`answer--${order} ${validatedClassName}`}
       data-id={id}
+      disabled={isValidated}
       onClick={() => handleCorrect(correctId, id)}
     >
       <span className='answer__text'>{artist}</span>
       <span className='answer__text'>{name}</span>
-    </div>
+    </button>
   );
 };
 
 Answer.propTypes = {
   answer: PropTypes.object,
-  order: PropTypes.number,
-  randomTrack: PropTypes.object
+  order: PropTypes.number
 };
 export default Answer;
