@@ -15,8 +15,9 @@ const logout = () => {
 };
 http.interceptors.response.use(null, error => {
   if (error.response.status === 401) {
+    const redirect = process.env.REACT_APP_REDIRECT_LOGIN;
     logout();
-    window.location = '/#/login';
+    window.location = redirect;
   } else {
     console.log('Ocurrió un error');
   }
