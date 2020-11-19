@@ -5,7 +5,7 @@ import { LoginContext } from '../contexts/LoginContext';
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ path, component: Component, render, ...rest }) => {
   const { isLogged } = useContext(LoginContext);
-
+  console.log('redirect');
   return (
     <Route
       {...rest}
