@@ -16,7 +16,6 @@ const logout = () => {
 http.interceptors.response.use(null, error => {
   if (error.response.status === 401) {
     logout();
-    console.log('window location');
     window.location = '/#/login';
   } else {
     console.log('Ocurrió un error');
