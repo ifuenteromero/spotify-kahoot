@@ -25,3 +25,17 @@ export const getRandomNumbers = (length, max) => {
   }
   return randomNumbers;
 };
+
+export const getSound = soundName => {
+  const soundsFolder = require.context('../sounds', true, /\.wav$/);
+  const soundObject = {};
+  soundsFolder.keys().forEach(pathName => {
+    const key = pathName.substring(
+      pathName.lastIndexOf('/') + 1,
+      pathName.lastIndexOf('.')
+    );
+    soundObject[key] = soundsFolder(pathName).default;
+  });
+
+  return soundObject[soundName];
+};
