@@ -12,11 +12,11 @@ const Timer = () => {
       setRemainingTime(currentTime => {
         if (currentTime > 0 && !isValidated) {
           currentTime = currentTime - 1;
-          return currentTime;
         } else {
           clearInterval(interval);
           handleCorrect();
         }
+        return currentTime;
       });
     }, 1000);
 
