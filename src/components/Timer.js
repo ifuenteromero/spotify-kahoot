@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import '../stylesheets/timer.scss';
+import { QuestionContext } from '../contexts/QuestionContext';
+import { getSound } from '../utils/useFulFunctions';
 
 const Timer = () => {
+  const { handleValidate, soundRef } = useContext(QuestionContext);
   const [remainingTime, setRemainingTime] = useState(10);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -10,7 +13,13 @@ const Timer = () => {
         if (currentTime > 0) {
           currentTime = currentTime - 1;
           return currentTime;
-        } else clearInterval(interval);
+        } else {
+          clearInterval(interval);
+          const wrong = getSound('wrong');
+          soundRef.current.src = wrong;
+          soundRef.current.play();
+          handleValidate();
+        }
       });
     }, 1000);
     return () => clearInterval(interval);
