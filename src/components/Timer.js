@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import { QuestionContext } from '../contexts/QuestionContext';
 import '../stylesheets/timer.scss';
@@ -6,21 +6,27 @@ import '../stylesheets/timer.scss';
 const Timer = () => {
   const { isValidated, handleCorrect } = useContext(QuestionContext);
   const [remainingTime, setRemainingTime] = useState(10);
+  const intervalRef = useRef();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRemainingTime(currentTime => {
-        if (currentTime > 0 && !isValidated) {
-          currentTime = currentTime - 1;
-        } else {
+      setRemainingTime(time => {
+        if (time > 0) return time - 1;
+        else {
           clearInterval(interval);
-          handleCorrect();
+          if (!isValidated) handleCorrect();
+          return time;
         }
-        return currentTime;
       });
     }, 1000);
 
-    return () => clearInterval(interval);
+    intervalRef.current = interval;
+  }, []);
+
+  useEffect(() => {
+    if (isValidated) {
+      clearInterval(intervalRef.current);
+    }
   }, [isValidated]);
 
   const value = 100 - remainingTime * 10;
