@@ -12,7 +12,7 @@ const Answer = ({ order, answer }) => {
   const id = answer?.id;
   const correctId = randomTrack?.id;
   const _isCorrect = correctId === id;
-  const correctedClassName = _isCorrect ? 'right' : 'wrong';
+  const correctedClassName = _isCorrect ? 'correct' : 'wrong';
   const validatedClassName = isValidated ? correctedClassName : '';
 
   return (
@@ -22,7 +22,7 @@ const Answer = ({ order, answer }) => {
       disabled={isValidated}
       onClick={() => handleCorrect(correctId === id)}
     >
-      <span className='answer__text'>{artist}</span>
+      <span className='answer__text answer__artist'>{artist}</span>
       <span className='answer__text'>{name}</span>
     </button>
   );
