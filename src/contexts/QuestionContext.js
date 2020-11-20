@@ -87,15 +87,21 @@ export const ProviderQuestion = props => {
     setIsCorrect(false);
   };
 
-  const handleCorrect = (correctId, currentId) => {
+  const handleCorrect = (_isCorrect = false) => {
     handleValidate();
-    const _isCorrect = correctId === currentId;
     setIsCorrect(_isCorrect);
-    const soundName = _isCorrect ? 'correct' : 'wrong';
-    const sound = getSound(soundName);
-    soundRef.current.src = sound;
-    soundRef.current.play();
   };
+
+  const handlePlaySound = () => {
+    if (isValidated) {
+      const soundName = isCorrect ? 'correct' : 'wrong';
+      const sound = getSound(soundName);
+      soundRef.current.src = sound;
+      soundRef.current.play();
+    }
+  };
+
+  useEffect(handlePlaySound, [isValidated]);
 
   return (
     <QuestionContext.Provider

@@ -20,7 +20,7 @@ const Answer = ({ order, answer }) => {
       className={`answer--${order} ${validatedClassName}`}
       data-id={id}
       disabled={isValidated}
-      onClick={() => handleCorrect(correctId, id)}
+      onClick={() => handleCorrect(correctId === id)}
     >
       <span className='answer__text'>{artist}</span>
       <span className='answer__text'>{name}</span>
