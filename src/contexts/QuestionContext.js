@@ -24,7 +24,7 @@ export const ProviderQuestion = props => {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [remainingTime, setRemainingTime] = useState(10);
   const [totalScore, setTotalScore] = useState(0);
-  const maxQuestions = 2;
+  const maxQuestions = 10;
 
   const [randomTrack, setRandomTrack] = useState({
     id: null,
