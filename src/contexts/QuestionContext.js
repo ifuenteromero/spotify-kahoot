@@ -23,6 +23,7 @@ export const ProviderQuestion = props => {
   const [isValidated, setIsValidated] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [remainingTime, setRemainingTime] = useState(10);
+  const [totalScore, setTotalScore] = useState(0);
   const maxQuestions = 2;
 
   const [randomTrack, setRandomTrack] = useState({
@@ -93,6 +94,8 @@ export const ProviderQuestion = props => {
   const handleCorrect = (_isCorrect = false) => {
     handleValidate();
     setIsCorrect(_isCorrect);
+    const questionScore = _isCorrect ? remainingTime ** 3 : 0;
+    setTotalScore(score => score + questionScore);
   };
 
   const handlePlaySound = () => {
@@ -126,7 +129,8 @@ export const ProviderQuestion = props => {
         remainingTime,
         setRemainingTime,
         questionNumber,
-        maxQuestions
+        maxQuestions,
+        totalScore
       }}
     >
       {children}
