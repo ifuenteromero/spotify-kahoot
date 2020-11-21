@@ -9,6 +9,7 @@ import Question from './Question';
 import Landing from './Landing';
 import { ProviderLogin } from '../contexts/LoginContext';
 import ProtectedRoute from './ProtectedRoute';
+import Finish from './Finish';
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
       <HashRouter>
         <ProviderLogin>
           <ProtectedRoute
-            path='/(|listening|play)'
+            path='/(|listening|play|finish)'
             render={() => (
               <header className='header'>
                 <UserProfile />
@@ -28,6 +29,7 @@ const App = () => {
             <ProviderQuestion>
               <ProtectedRoute path='/listening' component={Listening} />
               <ProtectedRoute path='/play' component={Question} />
+              <ProtectedRoute path='/finish' component={Finish} />
               <ProtectedRoute exact path='/' component={Landing} />
             </ProviderQuestion>
           </main>

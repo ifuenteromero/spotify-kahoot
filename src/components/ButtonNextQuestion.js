@@ -4,12 +4,18 @@ import { Link } from 'react-router-dom';
 import '../stylesheets/buttons.scss';
 
 const ButtonNextQuestion = () => {
-  const { isValidated, handleNextQuestion } = useContext(QuestionContext);
+  const {
+    isValidated,
+    handleNextQuestion,
+    questionNumber,
+    maxQuestions
+  } = useContext(QuestionContext);
+  const linkUrl = questionNumber < maxQuestions ? '/listening' : '/finish';
   return (
     <>
       {isValidated && (
         <Link
-          to='/listening'
+          to={linkUrl}
           className='button--secondary'
           onClick={handleNextQuestion}
         >
