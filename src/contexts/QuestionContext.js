@@ -107,6 +107,11 @@ export const ProviderQuestion = props => {
     }
   };
 
+  const resetGame = () => {
+    setTotalScore(0);
+    setQuestionNumber(1);
+  };
+
   useEffect(handlePlaySound, [isValidated]);
 
   return (
@@ -130,7 +135,8 @@ export const ProviderQuestion = props => {
         setRemainingTime,
         questionNumber,
         maxQuestions,
-        totalScore
+        totalScore,
+        resetGame
       }}
     >
       {children}
