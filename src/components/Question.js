@@ -5,6 +5,7 @@ import ButtonNextQuestion from './ButtonNextQuestion';
 import { QuestionContext } from '../contexts/QuestionContext';
 import Timer from './Timer';
 import Sound from './Sound';
+import Score from './Score';
 
 const Question = () => {
   const { resetQuestions } = useContext(QuestionContext);
@@ -18,7 +19,10 @@ const Question = () => {
       <Timer />
       <Answers />
       <Sound />
-      <CorrectAnswer />
+      <div className='corrected-score__container'>
+        <CorrectAnswer />
+        <Score />
+      </div>
       <ButtonNextQuestion />
     </div>
   );

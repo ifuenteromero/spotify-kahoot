@@ -61,6 +61,11 @@
   vertical-align: baseline;
 }
 
+.corrected-score__container {
+  display: flex;
+  gap: 10px;
+}
+
 .correct {
   background-color: #67bf3a;
 }

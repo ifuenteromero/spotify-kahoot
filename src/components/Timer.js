@@ -4,8 +4,13 @@ import { QuestionContext } from '../contexts/QuestionContext';
 import '../stylesheets/timer.scss';
 
 const Timer = () => {
-  const { isValidated, handleCorrect } = useContext(QuestionContext);
-  const [remainingTime, setRemainingTime] = useState(10);
+  const {
+    isValidated,
+    handleCorrect,
+    remainingTime,
+    setRemainingTime
+  } = useContext(QuestionContext);
+
   const intervalRef = useRef();
 
   useEffect(() => {

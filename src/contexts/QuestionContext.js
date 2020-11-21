@@ -22,6 +22,7 @@ export const ProviderQuestion = props => {
   const [answers, setAnswers] = useState([]);
   const [isValidated, setIsValidated] = useState(false);
   const [question, setQuestion] = useState(1);
+  const [remainingTime, setRemainingTime] = useState(10);
 
   const [randomTrack, setRandomTrack] = useState({
     id: null,
@@ -85,6 +86,7 @@ export const ProviderQuestion = props => {
   const resetQuestions = () => {
     setIsValidated(false);
     setIsCorrect(false);
+    setRemainingTime(10);
   };
 
   const handleCorrect = (_isCorrect = false) => {
@@ -119,7 +121,9 @@ export const ProviderQuestion = props => {
         resetQuestions,
         trackDuration,
         soundRef,
-        handleCorrect
+        handleCorrect,
+        remainingTime,
+        setRemainingTime
       }}
     >
       {children}
