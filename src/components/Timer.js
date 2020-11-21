@@ -1,23 +1,34 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import { QuestionContext } from '../contexts/QuestionContext';
 import '../stylesheets/timer.scss';
+import { getSound } from '../utils/useFulFunctions';
 
 const Timer = () => {
   const {
     isValidated,
     handleCorrect,
     remainingTime,
-    setRemainingTime
+    setRemainingTime,
+    soundRef
   } = useContext(QuestionContext);
 
   const intervalRef = useRef();
 
+  const handleTimerSound = number => {
+    const soundName = number % 2 ? 'tac' : 'tic';
+    const sound = getSound(soundName);
+    soundRef.current.src = sound;
+    soundRef.current.play();
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setRemainingTime(time => {
-        if (time > 0) return time - 1;
-        else {
+        if (time > 0) {
+          handleTimerSound(time);
+          return time - 1;
+        } else {
           clearInterval(interval);
           if (!isValidated) handleCorrect();
           return time;
@@ -34,7 +45,8 @@ const Timer = () => {
     }
   }, [isValidated]);
 
-  const value = 100 - remainingTime * 10;
+  //   const value = 100 - remainingTime * 10;
+  const value = remainingTime * 10;
   return (
     <div className='timer'>
       <CircularProgress variant='static' value={value} />
