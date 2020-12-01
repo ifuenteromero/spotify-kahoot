@@ -1,7 +1,7 @@
 import React from 'react';
 import '../stylesheets/login.scss';
 import '../stylesheets/buttons.scss';
-import { loginUrl, spotifyLogoUrl } from '../utils/spotify';
+import { loginUrl, spotifyLogoUrl } from '../config/spotify';
 
 const Login = () => {
   return (

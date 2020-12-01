@@ -1,6 +1,5 @@
 import React, { useState, createContext, useEffect, useRef } from 'react';
-import { http } from '../services/httpService';
-import endPoints, { tracksFromPlayList } from '../utils/spotifyUrls';
+import { getUserPlayLists, getTracksFromPlaylist } from '../services/spotifyService';
 import {
   getRandomNumber,
   getRandomNumbers,
@@ -13,7 +12,6 @@ export const ProviderQuestion = props => {
   const history = useHistory();
   // eslint-disable-next-line react/prop-types
   const { children } = props;
-  const { userPlayLists } = endPoints;
   const playerRef = useRef();
   const soundRef = useRef();
   const numberAnswers = 4;
@@ -41,12 +39,10 @@ export const ProviderQuestion = props => {
   };
 
   const getTracks = async () => {
-    const {
-      data: { items: playLists }
-    } = await http.get(userPlayLists);
+    const playLists = await getUserPlayLists();
 
     const playListsTracksResponse = await Promise.all(
-      playLists.map(async playList => http.get(tracksFromPlayList(playList.id)))
+      playLists.map(async playList => getTracksFromPlaylist(playList.id))
     );
 
     const _tracks = playListsTracksResponse.reduce(
@@ -101,8 +97,7 @@ export const ProviderQuestion = props => {
   const handlePlaySound = () => {
     if (isValidated) {
       const soundName = isCorrect ? 'correct' : 'wrong';
-      const sound = getSound(soundName);
-      soundRef.current.src = sound;
+      soundRef.current.src = getSound(soundName);
       soundRef.current.play();
     }
   };

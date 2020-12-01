@@ -1,5 +1,6 @@
 import React, { createContext, useLayoutEffect, useState } from 'react';
 import { http } from '../services/httpService';
+import { setItem } from '../services/cacheService'
 import { getTokenFromResponse } from '../utils/spotify';
 
 export const LoginContext = createContext();
@@ -12,17 +13,20 @@ export const ProviderLogin = ({ children }) => {
     const { access_token: _token } = getTokenFromResponse();
     window.location.hash = '';
     if (_token) {
-      localStorage.setItem(tokenKey, _token);
+      setItem(tokenKey, _token);
       http.ChangeToken(_token);
       setIsLogged(true);
     }
   };
 
-  useLayoutEffect(() => {
+  // useLayoutEffect(() => {
+  useLayoutEffect(async () => {
     const token = localStorage.getItem(tokenKey);
     const _isLogged = !!token;
     setIsLogged(_isLogged);
-    getToken();
+    // Esto es código asíncrono
+    // getToken();
+    await getToken();
   }, []);
 
   return (

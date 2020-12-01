@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../stylesheets/buttons.scss';
 import ButtonPlay from './ButtonPlay';
 

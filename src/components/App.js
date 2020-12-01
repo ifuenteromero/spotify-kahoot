@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './Login';
 import '../stylesheets/app.scss';
 import UserProfile from './UserProfile';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import { ProviderQuestion } from '../contexts/QuestionContext';
 import Listening from './Listening';
 import Question from './Question';

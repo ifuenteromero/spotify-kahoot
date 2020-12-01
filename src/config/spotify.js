@@ -1,4 +1,4 @@
-/* export const authEndpoint = 'https://accounts.spotify.com/authorize';
+export const authEndpoint = 'https://accounts.spotify.com/authorize';
 export const spotifyLogoUrl =
   'https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg';
 
@@ -17,16 +17,15 @@ const scopes = [
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   '%20'
-)}&response_type=token&show_dialog=true`; */
+)}&response_type=token&show_dialog=true`;
 
-// De lo que hay de spotify en utils esto me parece que es lo único realmente "utils"
-export const getTokenFromResponse = () => {
-  return window.location.hash
-    .substring(2)
-    .split('&')
-    .reduce((initial, item) => {
-      const parts = item.split('=');
-      initial[parts[0]] = decodeURIComponent(parts[1]);
-      return initial;
-    }, {});
+const currentUserProfileEndPoint = '/me';
+const userPlayLists = '/me/playlists';
+// esto seria más configuración que utils
+export const tracksFromPlayList = playListId =>
+  `/playlists/${playListId}/tracks`;
+
+export default {
+  currentUserProfileEndPoint,
+  userPlayLists
 };

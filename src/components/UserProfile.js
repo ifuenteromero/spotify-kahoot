@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import '../stylesheets/user.scss';
-import { http } from '../services/httpService';
+import { getUser as getProfile } from '../services/spotifyService';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const getUser = async () => {
-    const { data: _user } = await http.get('/me');
+    // Un componente no debería saber a qué ruta de la API invoca.
+    // No es su responsabilidad tener esa información.
+    const _user = await getProfile();
     setUser(_user);
   };
 
